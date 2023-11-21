@@ -14,5 +14,6 @@
 	    "season.not": null,
 	    "interp.vars": null,
 	    "interp.details": null,
-	    "compilation": null
+	    "compilation": null,
+	    "file.type": "Python"
 }

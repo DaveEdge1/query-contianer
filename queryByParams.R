@@ -44,6 +44,11 @@ qt <- queryLipdverse(  variable.name = params$variable.name,
 URLs <- convert_dsid_to_path(qt$datasetId)
 D <- readLipd(URLs)
 
-saveRDS(D, "output/lipd.rds")
+if (params$file.type == "R"){
+	saveRDS(D, "output/lipd.rds")
+} else {
+	writeLipd(D, path="output/query.lpd")
+}
+
 
 print("LiPD download complete!")
