@@ -41,14 +41,21 @@ qt <- queryLipdverse(  variable.name = params$variable.name,
 		       skip.update = TRUE)
 
 
-URLs <- convert_dsid_to_path(qt$datasetId)
-D <- readLipd(URLs)
+#URLs <- convert_dsid_to_path(qt$datasetId)
+D <- readLipd(qt)
 
-if (params$file.type == "R"){
-	saveRDS(D, "output/lipd.rds")
+
+if (length(D)>0){
+	if (params$file.type == "R"){
+		print("writing lipd for R")
+		saveRDS(D, "output/lipd.rds")
+	} else {
+		print("writing lipd for python")
+		writeLipd(D, path="output/query.lpd")
+	}
 } else {
-	writeLipd(D, path="output/query.lpd")
+	print("no lipd files downloaded")
 }
 
 
-print("LiPD download complete!")
+
